@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ~ Hibernate, Relational Persistence for Idiomatic Java ~ ~ License: 
+	GNU Lesser General Public License (LGPL), version 2.1 or later. ~ See the 
+	lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>. -->
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		<property name="hibernate.connection.username">postgres</property>
+		<property name="hibernate.connection.password">root123</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/testdb</property>
+		<property name="hibernate.connection.pool_size">2</property>
+		<!-- Disable second level cache <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property> -->
+
+<!-- secondlevel cache
+		<property name="cache.use_second_level_cache">false</property>
+		<property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>  -->
+		<!-- this property needs to be set seperately for queris --> 
+	<!--  <property name="hibernate.cache.use_query_cache">true</property>
+		 <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property> -->	
+		<!-- <property name="hibernate.jdbc.use_streams_for_binary">true</property> --> 
+ 
+		
+
+	
+		<!-- show query hibernate comes up with -->
+		<property name="show_sql">true</property>
+
+		<!-- <property name="hibernate.jdbc.batch_size">0</property> <property 
+			name="hibernate.max_fetch_depth">3</property> -->
+
+
+		<!-- hibernate will create table for us. Will drop and recreate on recreating 
+			session factory -->
+		<!-- <property name="hibernate.hbm2ddl.auto">create</property> -->
+		<!-- <property name="hibernate.generate_statistics">true</property> <property 
+			name="test-assertable-setting">value</property> -->
+		<!-- <property name="hibernate.cache.region.factory_class">org.hibernate.testing.cache.CachingRegionFactory</property> --> 
+			<!--dvsav -->
+		<!-- <mapping class="cascading.User" /> <mapping class="cascading.Vehicle" 
+			/> <mapping class="org.hibernate.jpa.test.Cat"/> <mapping class="org.hibernate.jpa.test.Kitten"/> 
+			<mapping class="org.hibernate.jpa.test.Distributor"/> <mapping class = "inheritance.Vehicle"/> 
+			<mapping class = "inheritance.TwoWheeler"/> <mapping class = "inheritance.FourWheeler"/> -->
+		<!-- <mapping class="hibernateDemo.VCFRecord" /> -->
+		<mapping class="com.msb.ngs.model.vcf.VcfEntry" />
+		<mapping class="com.msb.ngs.model.user.User" />
+		<!-- <class-cache class="org.hibernate.jpa.test.Item" usage="read-write"/> 
+			<collection-cache collection="org.hibernate.jpa.test.Item.distributors" usage="read-write" 
+			region="RegionName"/> -->
+		<!-- <event type="pre-insert"/> -->
+	</session-factory>
+</hibernate-configuration>
