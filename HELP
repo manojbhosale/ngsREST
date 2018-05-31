@@ -1,0 +1,45 @@
+#comment out the code in filter() method of AuthenticationFilter class to diable authentication
+
+#user creation is optional
+POST
+http://localhost:8080/vcf/vcfApp/ngs/user/create
+
+BODY:
+
+{
+	"name": "admin",
+	"role": "ADMIN",
+	"password": "password"
+}
+
+
+#Copy two sample vcf to C:\tmp directory and run following APIs
+
+GET
+http://localhost:8080/vcf/vcfApp/ngs/vcf/searchvcf/qual/10000
+http://localhost:8080/vcf/webapi/ngs/vcf/vcfcompare?leftFile=one.vcf&rightFile=two.vcf
+http://localhost:8080/vcf/vcfApp/ngs/vcf/vcfutil?name=one.vcf&type=HET
+
+POST
+http://localhost:8080/vcf/vcfApp/ngs/vcf/savevcf?name=one.vcf
+
+
+
+# This nees chain file for coordinate conversions. Download from http://hgdownload.cse.ucsc.edu/goldenPath/hg19/liftOver/hg19ToHg38.over.chain.gz 
+# Save the file locally and give the path in LiftOverDriver line#29.
+# Now below APIs should work
+GET
+http://localhost:8080/vcf/vcfApp/ngs/liftover/liftover?chr=chr1&start=17032814&stop=17032814
+http://localhost:8080/vcf/webapi/ngs/liftover/liftoverstr?chr=chr1&start=17032814&stop=17032814&strand=-
+
+
+
+#FOR SWAGGER
+Comment-out post methods in FileResource and FileOperationsResource (if present)
+Re launch the application 
+
+For SWAGGER UI go to:
+http://localhost:8080/vcf/#/
+
+For swagger JSON go to:
+http://localhost:8080/vcf/api/swagger.json
